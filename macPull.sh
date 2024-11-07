@@ -18,11 +18,10 @@ echo "Fetching logs for the last 24 hours..."
 collect_browser_history() {
     echo "Collecting browser history..."
     cp ~/Library/Safari/History.db "$TEMP_DIR/Safari_History.db" &
-    cp ~/Library/Application\ Support/Google/Chrome/Default/History "$TEMP_DIR/Chrome_History" &
+    cp ~Library/Application\ Support/Google/Chrome/Default/History "$TEMP_DIR/Chrome_History" &
     cp ~/Library/Application\ Support/Firefox/Profiles/*.default*/places.sqlite "$TEMP_DIR/Firefox_History.sqlite" &
     wait
 }
-
 # Collect system and user information
 collect_system_info() {
     echo "Collecting system information..."
