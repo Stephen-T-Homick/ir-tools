@@ -5,6 +5,7 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 from pathlib import Path
+import argparse
 
 def install_seaborn():
     """Check if Seaborn is installed, and install it if necessary."""
@@ -84,18 +85,20 @@ def load_and_analyze_data(log_dir):
 
 # Main Function to Orchestrate the Script Execution and Analysis
 def main():
+    # Parse command-line arguments
+    parser = argparse.ArgumentParser(description="Run a bash script and analyze the output logs.")
+    parser.add_argument("bash_script", help="The absolute path to the shell script to run.")
+    parser.add_argument("log_dir", help="The directory containing the log files to analyze.")
+    args = parser.parse_args()
+
     # Ensure Seaborn is installed
     install_seaborn()
 
-    # Define paths
-    bash_script_path = "/path/to/your/bash/script.sh"  # Update this path
-    log_dir = "/tmp/logs_..."  # This should be the directory created by the Bash script
-
     # Step 1: Run the Bash Script
-    run_bash_script(bash_script_path)
+    run_bash_script(args.bash_script)
     
     # Step 2: Load and Analyze the Output Logs
-    load_and_analyze_data(log_dir)
+    load_and_analyze_data(args.log_dir)
 
 if __name__ == "__main__":
     main()
